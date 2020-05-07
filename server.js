@@ -13,7 +13,7 @@ const morgan = require('morgan') // logs requests
 const app = express();
 
 // App Middleware 啟用
-const whitelist = ['http://localhost:3001']
+const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
@@ -37,6 +37,6 @@ app.use('/', mainRouter);
 app.use('/crud', crudRouter);
 
 // App Server Connection
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app is running on port ${process.env.PORT || 3000}`)
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`app is running on port ${process.env.PORT || 3001}`)
 })

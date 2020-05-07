@@ -19,12 +19,12 @@ const getTableData = (req, res) => {
 const postTableData = (req, res) => {
   const { name, age, email } = req.body;
   const added = new Date()
-  pool('people').insert({ name, age, email, added })
-    .returning('*')
-    .then((item) => {
+  pool.query('INSERT INTO people (name,age,email,added) VALUES ($1,$2,$3,$4)', [name, age, email, added])
+    .then((items) => {
+      console.log(items);
       res.json({
         success: true,
-        data: item
+        data: items[0]
       })
     })
     .catch((err) => {
@@ -43,8 +43,8 @@ const postTableData = (req, res) => {
 }
 
 const delTableData = (req, res) => {
-  const { id } = req.body
-  pool('people').where({ id }).del()
+  const { id } = req.body;
+  pool.query('DELETE FROM people WHERE id = $1', [id])
     .then(() => {
       res.json({
         success: true
