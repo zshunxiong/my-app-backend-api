@@ -9,7 +9,9 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const pool = new Pool({
   connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: isProduction
+  ssl: { 
+    rejectUnauthorized: isProduction 
+  }
 });
 
 // db Connection w/ localhost 資料庫連線設定
