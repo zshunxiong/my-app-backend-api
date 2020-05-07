@@ -10,7 +10,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const pool = new Pool({
   connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
   ssl: { 
-    rejectUnauthorized: isProduction 
+    rejectUnauthorized: false 
   }
 });
 
