@@ -13,7 +13,7 @@ const morgan = require('morgan') // logs requests
 const app = express();
 
 // App Middleware 啟用
-const whitelist = ['https://my-app-frontend.herokuapp.com/']
+const whitelist = ['http://localhost:3000','https://my-app-frontend.herokuapp.com']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {

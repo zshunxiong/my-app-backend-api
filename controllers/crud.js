@@ -21,7 +21,6 @@ const postTableData = (req, res) => {
   const added = new Date()
   pool.query('INSERT INTO people (name,age,email,added) VALUES ($1,$2,$3,$4)', [name, age, email, added])
     .then((items) => {
-      console.log(items);
       res.json({
         success: true,
         data: items[0]
