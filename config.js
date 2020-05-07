@@ -6,7 +6,7 @@ const db = require('knex')({
   client: 'pg',
   connection: {
     connectionString: connectionString,
-    ssl: true,
+    ssl: true
   }
 });
 
@@ -14,10 +14,10 @@ const db = require('knex')({
 // const db = require('knex')({
 //   client: 'pg',
 //   connection: {
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_DATABASE
+//     host: process.env.local_HOST,
+//     user: process.env.local_USER,
+//     password: process.env.local_PASSWORD,
+//     database: process.env.local_DATABASE
 //   }
 // });
 

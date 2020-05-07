@@ -4,4 +4,4 @@ CREATE TABLE people (
  age INTEGER NOT NULL,
  email text UNIQUE NOT NULL,
  added TIMESTAMP NOT NULL
-);
+)
