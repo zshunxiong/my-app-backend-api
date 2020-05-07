@@ -1,9 +1,12 @@
-const getTableData = (req, res, db) => {
-  db.select('*').from('people')
+// 載入資料坤連線資料
+const pool = require('../config');
+
+const getTableData = (req, res) => {
+  pool.query('SELECT * FROM people')
     .then((items) => {
       res.json({
         success: true,
-        data: items
+        data: items.rows
       })
     })
     .catch(err => res.status(400).json({
@@ -13,10 +16,10 @@ const getTableData = (req, res, db) => {
     }))
 }
 
-const postTableData = (req, res, db) => {
+const postTableData = (req, res) => {
   const { name, age, email } = req.body;
   const added = new Date()
-  db('people').insert({ name, age, email, added })
+  pool('people').insert({ name, age, email, added })
     .returning('*')
     .then((item) => {
       res.json({
@@ -39,9 +42,9 @@ const postTableData = (req, res, db) => {
     })
 }
 
-const delTableData = (req, res, db) => {
+const delTableData = (req, res) => {
   const { id } = req.body
-  db('people').where({ id }).del()
+  pool('people').where({ id }).del()
     .then(() => {
       res.json({
         success: true
