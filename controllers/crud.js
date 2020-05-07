@@ -2,7 +2,7 @@
 const pool = require('../config');
 
 const getTableData = (req, res) => {
-  pool.query('SELECT * FROM people')
+  pool.query('SELECT * FROM people ORDER BY id')
     .then((items) => {
       res.json({
         success: true,
@@ -14,6 +14,31 @@ const getTableData = (req, res) => {
       msg: '資料庫錯誤',
       error: err
     }))
+}
+
+const putTableData = (req, res) => {
+  const { id, name, age, email } = req.body;
+  const added = new Date()
+  pool.query('UPDATE people SET name=$2,age=$3,email=$4,added=$5 WHERE id=$1', [id, name, age, email, added])
+    .then((items) => {
+      res.json({
+        success: true,
+        data: items[0]
+      })
+    })
+    .catch((err) => {
+      let msg = '';
+      if (err.code === "22P02") {
+        msg = '欄位格式錯誤';
+      } else if (err.code === "23505") {
+        msg = 'E-Mail已被使用';
+      }
+      res.status(400).json({
+        success: false,
+        msg: msg,
+        error: err
+      })
+    })
 }
 
 const postTableData = (req, res) => {
@@ -59,5 +84,6 @@ const delTableData = (req, res) => {
 module.exports = {
   getTableData,
   postTableData,
-  delTableData
+  delTableData,
+  putTableData
 }
