@@ -55,7 +55,7 @@ const login = (req, res) => {
             delete itemFounded.password;
             // 創建 JWT (Json Web Token)
             const payload = { data: itemFounded };
-            const options = { expiresIn: '1h', issuer: 'my_app' };
+            const options = { expiresIn: '1h', issuer: 'https://my-app-backend-api.herokuapp.com' };
             const secret = process.env.JWT_SECRET;
             const token = jwt.sign(payload, secret, options);
             res.json({
