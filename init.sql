@@ -4,10 +4,10 @@ CREATE TABLE people (
  age INTEGER NOT NULL,
  email text UNIQUE NOT NULL,
  added TIMESTAMP NOT NULL
-)
+);
 
 CREATE TABLE admin (
  account VARCHAR(20) UNIQUE NOT NULL PRIMARY KEY,
  password VARCHAR(60) NOT NULL,
  added TIMESTAMP NOT NULL
-)
+);
