@@ -21,13 +21,15 @@ const validateToken = (req, res, next) => {
       // Throw an error just in case anything goes wrong with verification
       res.json({
         success: false,
-        msg: '認證失敗，請重新登入'
+        redirect: true,
+        msg: 'Token 認證失敗'
       })
     }
   } else {
     res.status(401).json({
       success: false,
-      msg: '認證失敗，請重新登入'
+      redirect: true,
+      msg: 'Token 無法讀取'
     })
   }
 }
