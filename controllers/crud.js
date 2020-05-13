@@ -1,4 +1,4 @@
-// 載入資料坤連線資料
+// 載入資料庫連線資料
 const pool = require('../config');
 
 const getTableData = (req, res) => {
@@ -32,6 +32,8 @@ const putTableData = (req, res) => {
         msg = '欄位格式錯誤';
       } else if (err.code === "23505") {
         msg = 'E-Mail已被使用';
+      } else {
+        msg = '資料庫錯誤';
       }
       res.status(400).json({
         success: false,
@@ -57,6 +59,8 @@ const postTableData = (req, res) => {
         msg = '欄位格式錯誤';
       } else if (err.code === "23505") {
         msg = 'E-Mail已被使用';
+      } else {
+        msg = '資料庫錯誤';
       }
       res.status(400).json({
         success: false,
